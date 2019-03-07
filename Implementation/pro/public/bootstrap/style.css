@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+ body
+ {
+ 	font-family: 'Roboto',sans-serif;
+ 	background: url(mt1.jpg) no-repeat;
+ 	background-size:cover;
+ 	
+
+ }
+.main-section
+{
+	margin:0 auto;
+	margin-top: 150px;
+	padding:0;
+}
+.modal-content
+{
+background-color: #33495e;
+opacity: 0.85;
+}
+.user-img
+{
+	margin-top:-50px;
+	margin-bottom: 30px;
+}
+.user-img img
+{
+	height: 100px;
+	width: 100px;
+}
+.form-group
+{
+	margin-bottom:20px;
+}
+.form-group input
+{
+	border-radius:0;
+	border:0;
+	height: 38px;
+	padding-left: 50px;
+}
+.form-input button 
+{
+	width: 30%;
+	margin-bottom: 20px;
+
+}
+.btn-success
+{
+	background-color: #2ecc71;
+	border-radius: 0;
+	padding: 0.7rem;
+}
+
+.btn-success:hover
+{
+background-color: #27ae68;
+}
+.link-part
+{
+	padding: 5px 0 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
