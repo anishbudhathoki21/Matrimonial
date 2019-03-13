@@ -37,7 +37,7 @@
                                 <a class="nav-link" href="">{{ __('Home') }}</a>
                             </li>
                              <li class="nav-item">
-                                <a class="nav-link" href="{{('matchmaking')}}">{{ __('Matchmaking') }}</a>
+                                <a class="nav-link" href="{{url('/matchmaking')}}">{{ __('Matchmaking') }}</a>
                             </li>
                              <li class="nav-item">
                                 <a class="nav-link" href="{{('sample')}}">{{ __('Sample') }}</a>

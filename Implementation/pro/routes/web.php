@@ -1,15 +1,7 @@
 <?php
+use Illuminate\Support\Facades\Input;
+use App\User;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,4 +27,12 @@ Route::put('/editprofile/{id}','ProfileController@updateprofile');
 Route::get('/sample','BlogController@create');
 Route::post('/sample','BlogController@store');
 
-Route::get('\matchmaking','MatchMaking@index');
+Route::any('/matchmaking',function(){
+    $q = Input::get ( 'q' );
+    $user = User::where('name','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->get();
+    
+
+    if(count($user) > 0)
+        return view('matchmaking')->withDetails($user)->withQuery ( $q );
+    else return view ('matchmaking')->withMessage('No Details found. Try to search again !');
+});

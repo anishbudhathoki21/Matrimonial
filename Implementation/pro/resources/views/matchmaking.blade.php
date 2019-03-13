@@ -9,9 +9,11 @@
   }
   </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="ja/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="{{url('bootstrap/bootstrap.min.css')}}" />
+  <link rel="stylesheet" href="{{url('sign/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
 
 	<title>Matrimonial Website</title>
 </head>
@@ -48,25 +50,95 @@
 </nav>
 </nav>
 <div class="jumbotron jumbotron-fluid">
-  <div class="container">
+<!--   <div class="container">
     <h1>Find Your Partner</h1> 
-  <form action="/matchmaking" method="get">
-    <div class="form-group">
-   <input type="search" class="form-control" name="search" placeholder="Enter name">
-      <select class="custom-select" id="inputGroupSelect" name="Religion">
-        <option>Select Religion</option>
+<input type="text" name="search" id="search" placeholder="Show info">
+<div class="table">
+  <h3>Total Data:<span id="total_records"></span></h3>
+  <table class="table table-striped table=bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name:</th>
+        <th>Religion</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
       
-        @foreach($users as $key=>$user)
-        <option value="{{$users->id}}">{{$users->religion}}</option>
-        @endforeach
-        
-      <input type="search"  class="form-control" name="search" placeholder="Enter gender">
-    <button type="submit" class="form-control btn btn-success">Search</button>
+    </tbody>
+    
+  </table>
+
+  
 </div>
-  </form>
-</div>
+</div> -->
+<div class="container">
+    <form action="/matchmaking" method="POST" role="search">
+      {{ csrf_field() }}
+      <div class="input-group">
+        <input type="text" class="form-control" name="q"
+          placeholder="Search users"> <span class="input-group-btn">
+          <button type="submit" class="btn btn-default">
+            <span ><i class="zmdi zmdi-search"></i></span>
+          </button>
+        </span>
+      </div>
+    </form>
+    <div class="container">
+      @if(isset($details))
+      <p> The Search results for your query <b> {{ $query }} </b> are :</p>
+      <h2>Partners details</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Religion</th>
+            <th>Address</th>
+            <th>Gender</th>
+            <th>View Profile</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($details as $user)
+          <tr>
+            <td>{{$user->name}}</td>
+            <td>{{$user->email}}</td>
+            <td>{{$user->religion}}</td>
+            <td>{{$user->address}}</td>
+            <td>{{$user->gender}}</td>
+            <td><a href="">View Profile</a></td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+      @elseif(isset($message))
+      <p>{{ $message }}</p>
+      @endif
+    </div>
+    
+      
+    </div>
   </div>
 </div>
+<div class="container">
+      <p class="mbr-text mbr-fonts-style display-5">
+        {{!! str_limit($user->name) !!}}</p>
+        <div>
+          <p class="mbr-text mbr-fonts-style display-5">
+        {{!! str_limit($user->address) !!}}</p>
+        </div>
+        <div>
+          <p class="mbr-text mbr-fonts-style display-5">
+        {{!! str_limit($user->gender) !!}}</p>
+        </div>
+         <div>
+          <p class="mbr-text mbr-fonts-style display-5">
+        {{!! str_limit($user->religion) !!}}</p>
+        </div>
+      </div>
+
 <!-- <h1>Featured Profiles</h1> -->
 <div class="container">
  <!--  <h2>Card Image</h2>
@@ -147,3 +219,4 @@
   <!-- Footer -->
 </body>
 </html>
+
